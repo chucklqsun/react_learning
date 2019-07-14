@@ -39,6 +39,22 @@ class ProductTable extends React.Component {
             lastCategory = product.category;
         });
 
+        if(this.props.products.length === 0){
+            if(!this.props.isLoaded){
+                rows.push(
+                    <TableRow>
+                        <TableCell>Loading...</TableCell>
+                    </TableRow>
+                )
+            } else {
+                rows.push(
+                    <TableRow>
+                        <TableCell>No results</TableCell>
+                    </TableRow>
+                )
+            }
+        }
+
         return (
             <Table className="product-table">
                 <TableHead>

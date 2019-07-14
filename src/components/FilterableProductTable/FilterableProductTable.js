@@ -38,6 +38,7 @@ class FilterableProductTable extends React.Component {
                     products={this.props.products}
                     filterText={this.state.filterText}
                     inStockOnly={this.state.inStockOnly}
+                    isLoaded={this.props.isLoaded}
                 />
             </div>
         );

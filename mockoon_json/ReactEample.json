@@ -1,0 +1,71 @@
+{
+  "id": "mockoon_export",
+  "appVersion": "1.4.0",
+  "checksum": "3bf4484f7e266d5e682cbfbcdcb37943",
+  "subject": "environment",
+  "data": {
+    "uuid": "fc730810-a302-11e9-810b-dfa0f0d927ec",
+    "name": "React Example",
+    "endpointPrefix": "",
+    "latency": 1000,
+    "port": 3001,
+    "routes": [
+      {
+        "uuid": "",
+        "documentation": "",
+        "method": "get",
+        "endpoint": "product_list",
+        "body": "[\n    {\"category\":\"Sporting Goods\",\"price\":\"$49.99\",\"stocked\":true,\"name\":\"Football\"},\n    {\"category\":\"Sporting Goods\",\"price\":\"$9.99\",\"stocked\":true,\"name\":\"Baseball\"},\n    {\"category\":\"Sporting Goods\",\"price\":\"$29.99\",\"stocked\":false,\"name\":\"Basketball\"},\n    {\"category\":\"Electronics\",\"price\":\"$99.99\",\"stocked\":true,\"name\":\"iPod Touch\"},\n    {\"category\":\"Electronics\",\"price\":\"$399.99\",\"stocked\":false,\"name\":\"iPhone 5\"},\n    {\"category\":\"Electronics\",\"price\":\"$199.99\",\"stocked\":true,\"name\":\"Nexus 7\"\n    }\n]",
+        "latency": 0,
+        "statusCode": "200",
+        "headers": [
+          {
+            "key": "",
+            "value": ""
+          }
+        ],
+        "filePath": "",
+        "sendFileAsBody": false
+      },
+      {
+        "uuid": "d74a4f20-a5f6-11e9-9002-9bbbb66417ef",
+        "documentation": "",
+        "method": "get",
+        "endpoint": "product_list_nothing",
+        "body": "[]",
+        "latency": 0,
+        "statusCode": "200",
+        "headers": [
+          {
+            "key": "",
+            "value": ""
+          }
+        ],
+        "filePath": "",
+        "sendFileAsBody": false
+      }
+    ],
+    "proxyMode": false,
+    "proxyHost": "",
+    "https": false,
+    "cors": true,
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      },
+      {
+        "key": "Access-Control-Allow-Methods",
+        "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+      },
+      {
+        "key": "Access-Control-Allow-Headers",
+        "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+      }
+    ]
+  }
+}

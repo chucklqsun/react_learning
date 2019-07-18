@@ -3,32 +3,19 @@ import './App.css';
 import Toggle from '../Toggle';
 import FilterableProductTable from "../FilterableProductTable";
 import Container from '@material-ui/core/Container';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
+import TabContainer from '../TabContainer';
+import ContextExample from "../ContextExample/ContextExample";
+import PKAppBar from "../PKAppBar";
+import ReduxExample from "../ReduxExample";
 
-// const PRODUCTS = [
-//     {category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football'},
-//     {category: 'Sporting Goods', price: '$9.99', stocked: true, name: 'Baseball'},
-//     {category: 'Sporting Goods', price: '$29.99', stocked: false, name: 'Basketball'},
-//     {category: 'Electronics', price: '$99.99', stocked: true, name: 'iPod Touch'},
-//     {category: 'Electronics', price: '$399.99', stocked: false, name: 'iPhone 5'},
-//     {category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7'}
-// ];
-class TabContainer extends React.Component {
-    render() {
-        return (
-            <Typography component="div" style={{ padding: 8 * 3 }}>
-                {this.props.children}
-            </Typography>
-        );
-    }
-}
-TabContainer.propTypes = {
-    children: PropTypes.node.isRequired,
-};
+const PRODUCTS = [
+    {category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football'},
+    {category: 'Sporting Goods', price: '$9.99', stocked: true, name: 'Baseball'},
+    {category: 'Sporting Goods', price: '$29.99', stocked: false, name: 'Basketball'},
+    {category: 'Electronics', price: '$99.99', stocked: true, name: 'iPod Touch'},
+    {category: 'Electronics', price: '$399.99', stocked: false, name: 'iPhone 5'},
+    {category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7'}
+];
 
 class App extends React.Component {
     constructor(props) {
@@ -39,7 +26,7 @@ class App extends React.Component {
             isLoaded: false,
             items: []
         };
-        this.handleChange = this.handleChange.bind(this);
+        this.handleTabChange = this.handleTabChange.bind(this);
     }
 
     componentDidMount() {
@@ -65,7 +52,7 @@ class App extends React.Component {
             )
     }
 
-    handleChange(e, value) {
+    handleTabChange(e, value) {
         this.setState({
             tabIndex: value
         });
@@ -75,7 +62,15 @@ class App extends React.Component {
         const { error, isLoaded, items, tabIndex} = this.state;
         let app_content = '';
         if (error) {
-            app_content = <div>Error: {error.message}</div>;
+            app_content = (
+                <div className="App">
+                    <div>
+                    Error: {error.message}, using dummy data
+                    </div>
+                    <FilterableProductTable products={PRODUCTS} isLoaded={isLoaded}/>
+                    <Toggle/>
+                </div>
+            );
         } else {
             app_content = (
                 <div className="App">
@@ -86,13 +81,7 @@ class App extends React.Component {
         }
         return (
             <div>
-                <AppBar position='static'>
-                    <Tabs value={tabIndex} onChange={this.handleChange}>
-                        <Tab label="Thinking in React" />
-                        <Tab label="Context" />
-                        <Tab label="Route" />
-                    </Tabs>
-                </AppBar>
+                <PKAppBar tabIndex={tabIndex} handleChange={this.handleTabChange}/>
                 <Container maxWidth="sm">
                 {tabIndex === 0 &&
                     <TabContainer>
@@ -101,12 +90,17 @@ class App extends React.Component {
                 }
                 {tabIndex === 1 &&
                     <TabContainer>
-                        Context
+                        <ContextExample />
                     </TabContainer>
                 }
                 {tabIndex === 2 &&
                     <TabContainer>
-                        Route
+                       <ReduxExample />
+                    </TabContainer>
+                }
+                {tabIndex === 3 &&
+                    <TabContainer>
+                        International
                     </TabContainer>
                 }
                 </Container>

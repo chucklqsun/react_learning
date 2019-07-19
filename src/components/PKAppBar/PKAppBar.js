@@ -24,10 +24,11 @@ class PKAppBar extends React.Component {
         return (
             <AppBar position='static'>
                 <Tabs value={props.tabIndex} onChange={this.handleChange}>
-                    <Tab label="Thinking in React" />
                     <Tab label="Context" />
+                    <Tab label="Thinking in React" />
                     <Tab label="Redux" />
-                    <Tab label="International" />
+                    <Tab label="React-Redux" />
+                    <Tab label="UI Element" />
                 </Tabs>
             </AppBar>
         );

@@ -1,6 +1,6 @@
 import React from 'react';
-import ProductCategoryRow from "./ProductCategoryRow";
-import ProductRow from "./ProductRow";
+import ProductCategoryRow from "./ProductCategoryRow/index";
+import ProductRow from "./ProductRow/index";
 import './ProductTable.css';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,10 +9,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
 class ProductTable extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    // }
-
     render() {
         const filterText = this.props.filterText;
         const inStockOnly = this.props.inStockOnly;
@@ -42,13 +38,13 @@ class ProductTable extends React.Component {
         if(this.props.products.length === 0){
             if(!this.props.isLoaded){
                 rows.push(
-                    <TableRow>
+                    <TableRow key={1}>
                         <TableCell>Loading...</TableCell>
                     </TableRow>
                 )
             } else {
                 rows.push(
-                    <TableRow>
+                    <TableRow key={1}>
                         <TableCell>No results</TableCell>
                     </TableRow>
                 )
@@ -59,8 +55,8 @@ class ProductTable extends React.Component {
             <Table className="product-table">
                 <TableHead>
                     <TableRow>
-                        <TableCell component="th" scope="row">Name</TableCell>
-                        <TableCell component="th" scope="row">Price</TableCell>
+                        <TableCell component="th" scope="row" key={1}>Name</TableCell>
+                        <TableCell component="th" scope="row" key={2}>Price</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

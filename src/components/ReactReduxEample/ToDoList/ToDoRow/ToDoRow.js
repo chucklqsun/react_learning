@@ -3,6 +3,8 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
+import {connect} from "react-redux";
+import {toggleTodo} from "../../redux/actions";
 
 class ToDoRow extends React.Component {
     constructor(props) {
@@ -11,7 +13,7 @@ class ToDoRow extends React.Component {
     }
 
     handleClick (){
-        this.props.handleChange(this.props.todo.id)
+        this.props.toggleTodo(this.props.todo.id);
     }
 
     render() {
@@ -46,4 +48,5 @@ class ToDoRow extends React.Component {
         );
     }
 }
-export default ToDoRow;
+
+export default connect(null, {toggleTodo})(ToDoRow);

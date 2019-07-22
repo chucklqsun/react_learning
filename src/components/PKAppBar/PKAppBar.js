@@ -2,6 +2,7 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import {tabsInfo} from "../App/Common";
 
 class PKAppBar extends React.Component {
     constructor(props) {
@@ -19,16 +20,21 @@ class PKAppBar extends React.Component {
         this.props.handleChange(e, value);
     }
 
+    listTabs(){
+        let tabs = [];
+        tabsInfo.forEach(function (value, idx) {
+            tabs.push(<Tab key={idx} label={value.name} />)
+        });
+        return tabs;
+    }
+
     render() {
         const props = this.props;
+        const tabs = this.listTabs();
         return (
             <AppBar position='static'>
                 <Tabs value={props.tabIndex} onChange={this.handleChange}>
-                    <Tab label="Context" />
-                    <Tab label="Thinking in React" />
-                    <Tab label="Redux" />
-                    <Tab label="React-Redux" />
-                    <Tab label="UI Element" />
+                    {tabs}
                 </Tabs>
             </AppBar>
         );

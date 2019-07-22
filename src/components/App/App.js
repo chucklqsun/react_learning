@@ -2,13 +2,8 @@ import React from 'react';
 import './App.css';
 import Container from '@material-ui/core/Container';
 import TabContainer from '../TabContainer';
-import ContextExample from "../ContextExample/ContextExample";
 import PKAppBar from "../PKAppBar";
-import ReduxExample from "../ReduxExample";
-import ReactReduxExample from "../ReactReduxEample/ReactReduxExample";
-import ThinkExample from "../ThinkExample/ThinkExample";
-
-
+import {tabsInfo} from "./Common";
 
 class App extends React.Component {
     constructor(props) {
@@ -25,37 +20,23 @@ class App extends React.Component {
         });
     }
 
+    getContent(tabs, tabIndex){
+        let content = "Unknown";
+        tabs.forEach(function (value,idx) {
+            if(tabIndex === idx) {
+                content = <TabContainer>{value.component}</TabContainer>
+            }
+        });
+        return content;
+    }
+
     render() {
         const {tabIndex} = this.state;
         return (
             <div>
                 <PKAppBar tabIndex={tabIndex} handleChange={this.handleTabChange}/>
                 <Container maxWidth="sm">
-                {tabIndex === 0 &&
-                    <TabContainer>
-                        <ContextExample />
-                    </TabContainer>
-                }
-                {tabIndex === 1 &&
-                    <TabContainer>
-                        <ThinkExample/>
-                    </TabContainer>
-                }
-                {tabIndex === 2 &&
-                    <TabContainer>
-                       <ReduxExample />
-                    </TabContainer>
-                }
-                {tabIndex === 3 &&
-                    <TabContainer>
-                        <ReactReduxExample/>
-                    </TabContainer>
-                }
-                {tabIndex === 4 &&
-                    <TabContainer>
-                        UI Element
-                    </TabContainer>
-                }
+                    {this.getContent(tabsInfo, tabIndex)}
                 </Container>
             </div>
         )

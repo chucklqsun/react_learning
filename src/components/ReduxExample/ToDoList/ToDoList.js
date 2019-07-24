@@ -15,7 +15,7 @@ class ToDoList extends React.Component {
         });
         return (
             <div>
-                <label>To do list (Pure Redux)</label>
+                <div>To do list (Pure Redux)</div>
                 <Table className="todolist-table">
                     <TableHead>
                     </TableHead>

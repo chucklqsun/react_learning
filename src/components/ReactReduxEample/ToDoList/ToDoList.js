@@ -16,7 +16,7 @@ class ToDoList extends React.Component {
         });
         return (
             <div>
-                <label>To do list (React-Redux)</label>
+                <div>To do list (React-Redux)</div>
                 <Table className="todolist-table">
                     <TableHead>
                     </TableHead>

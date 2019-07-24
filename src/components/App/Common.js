@@ -3,7 +3,7 @@ import ThinkExample from "../ThinkExample/ThinkExample";
 import ReduxExample from "../ReduxExample";
 import ReactReduxExample from "../ReactReduxEample";
 import React from "react";
-import WebComExample from "../WebComExample";
+// import WebComExample from "../WebComExample";
 
 export const tabsInfo = [
     {name: "Context", component: <ContextExample />},
@@ -11,5 +11,5 @@ export const tabsInfo = [
     {name: "Redux" ,component: <ReduxExample/>},
     {name: "ReactRedux" ,component: <ReactReduxExample/>},
     {name: "UI Element" ,component: <div>UI Element</div>},
-    {name: "Web Component" ,component: <WebComExample />}
+    // {name: "Web Component" ,component: <WebComExample />}
 ];

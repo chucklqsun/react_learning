@@ -36,6 +36,7 @@ class SearchBar extends React.Component {
                         control={
                             <Checkbox
                                 checked={inStockOnly}
+                                inputProps={{'data-testid': 'in-stock-only-checkbox'}}
                                 onChange={this.handleInStockChange}
                                 />
                         }

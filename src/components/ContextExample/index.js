@@ -1,2 +1,2 @@
-import ContextExample from './ContextExample.js'
+import ContextExample from './ContextExample'
 export default ContextExample

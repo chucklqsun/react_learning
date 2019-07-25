@@ -4,6 +4,8 @@ import Container from '@material-ui/core/Container';
 import TabContainer from '../TabContainer';
 import PKAppBar from "../PKAppBar";
 import {tabsInfo} from "./Common";
+import CodeBlock from "../CodeBlock";
+const ReactMarkdown = require('react-markdown/with-html');
 
 class App extends React.Component {
     constructor(props) {
@@ -24,7 +26,15 @@ class App extends React.Component {
         let content = "Unknown";
         tabs.forEach(function (value,idx) {
             if(tabIndex === idx) {
-                content = <TabContainer>{value.component}</TabContainer>
+                content =
+                    <TabContainer>
+                        {value.component}
+                        <ReactMarkdown
+                            source={value.note}
+                            escapeHtml={false}
+                            renderers={{ code: CodeBlock }}
+                        />
+                    </TabContainer>
             }
         });
         return content;
@@ -35,7 +45,7 @@ class App extends React.Component {
         return (
             <div>
                 <PKAppBar tabIndex={tabIndex} handleChange={this.handleTabChange}/>
-                <Container maxWidth="sm">
+                <Container maxWidth="xl">
                     {this.getContent(tabsInfo, tabIndex)}
                 </Container>
             </div>

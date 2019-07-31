@@ -1,16 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import "./index.css"
+import Game from "../Game";
 
 function Index() {
     return <h2>Home</h2>;
 }
 
-function About() {
-    return <h2>About</h2>;
-}
-
-function Users() {
-    return <h2>Users</h2>;
+function myGame() {
+    return <Game />
 }
 
 class RouterExample extends React.Component {
@@ -19,22 +17,18 @@ class RouterExample extends React.Component {
             <Router>
                 <div>
                     <nav>
-                        <ul>
+                        <ul className="menu">
                             <li>
                                 <Link to="/">Home</Link>
                             </li>
                             <li>
-                                <Link to="/about/">About</Link>
-                            </li>
-                            <li>
-                                <Link to="/users/">Users</Link>
+                                <Link to="/tic-tac-toe/">tic-tac-toe</Link>
                             </li>
                         </ul>
                     </nav>
 
                     <Route path="/" exact component={Index} />
-                    <Route path="/about/" component={About} />
-                    <Route path="/users/" component={Users} />
+                    <Route path="/tic-tac-toe/" component={myGame} />
                 </div>
             </Router>
         );

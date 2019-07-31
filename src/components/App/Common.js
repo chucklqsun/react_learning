@@ -4,6 +4,7 @@ import ThinkExample from "../ThinkExample/ThinkExample";
 import ReduxExample from "../ReduxExample";
 import ReactReduxExample from "../ReactReduxEample";
 import RouterExample from "../RouterExample";
+import HookExample from "../HookExample";
 // Web Component is incompatible with jest
 // import WebComExample from "../WebComExample";
 import {text as ContextExampleNote} from "../../assets/notes/ContextExample"
@@ -21,5 +22,6 @@ export const tabsInfo = [
     {name: "ReactRedux" ,component: <ReactReduxExample/>, note: ReactReduxExampleNote},
     {name: "UI Element" ,component: <div>UI Element</div>, note: "N/A"},
     {name: "Router" ,component: <RouterExample />, note: RouterExampleNote},
+    {name: "Hook" ,component: <HookExample />, note: "N/A"},
     // {name: "Web Component" ,component: <WebComExample />}
 ];

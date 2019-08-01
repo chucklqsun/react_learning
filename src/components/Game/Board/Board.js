@@ -2,9 +2,11 @@ import React from 'react';
 
 class Square extends React.Component {
     render() {
+        const style = `square ${this.props.style}`;
+        console.log(style);
         return (
             <button
-                className="square"
+                className={style}
                 onClick={() => this.props.onClick()}
             >
                 {this.props.value}
@@ -15,90 +17,41 @@ class Square extends React.Component {
 
 
 class Board extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            squares: Array(9).fill(null),
-            xIsNext: true,
-        };
-    }
-
-    handleClick(i){
-        //make a copy of state
-        const squares = this.state.squares.slice();
-        //return early by ignoring a click if someone has won the game/draw game or if a Square is already filled.
-        if (calculateWinner(squares) || squares[i] || !squares.includes(null)) {
-            return;
-        }
-        squares[i] = this.state.xIsNext ? 'X':'O';
-        this.setState({
-            squares: squares,
-            xIsNext: !this.state.xIsNext,
-        });
-    }
-
     renderSquare(i) {
+        //When someone wins, highlight the three squares that caused the win.
+        const style = this.props.criticalMoves.includes(i) ? 'font-color-red' : '';
         return <Square
-            value={this.state.squares[i]}
-            onClick={() => this.handleClick(i)}
+            style={style}
+            key={i}
+            value={this.props.squares[i]}
+            onClick={() => this.props.onClick(i)}
         />;
     }
 
-    render() {
-        const winner = calculateWinner(this.state.squares);
-        let status;
 
-        if (winner) {
-            status = 'Winner: ' + winner;
-        } else {
-            //draw game
-            if(!this.state.squares.includes(null)){
-                status = 'Draw Game!';
-            }else {
-                status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    render() {
+        //use two loops to make the squares instead of hard coding them.
+        let rows = [];
+        for(let i=0;i<3;i++){
+            let cols = [];
+            for(let j=0;j<3;j++){
+                cols.push(
+                    this.renderSquare(3 * i + j)
+                )
             }
+            rows.push(
+                <div key={i} className="board-row">
+                    {cols}
+                </div>
+            )
         }
 
         return (
             <div>
-                <div className="status">{status}</div>
-                <div className="board-row">
-                    {this.renderSquare(0)}
-                    {this.renderSquare(1)}
-                    {this.renderSquare(2)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(3)}
-                    {this.renderSquare(4)}
-                    {this.renderSquare(5)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(6)}
-                    {this.renderSquare(7)}
-                    {this.renderSquare(8)}
-                </div>
+                {rows}
             </div>
         );
     }
-}
-function calculateWinner(squares) {
-    const lines = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6],
-    ];
-    for (let i = 0; i < lines.length; i++) {
-        const [a, b, c] = lines[i];
-        if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-            return squares[a];
-        }
-    }
-    return null;
 }
 
 export default Board;
